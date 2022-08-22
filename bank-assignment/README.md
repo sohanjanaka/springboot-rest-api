@@ -1,6 +1,6 @@
 # Description
 
-This is a SpringBoot REST Web API backend build with Gradle (gradle wrapper file included)
+This is a SpringBoot REST API build with Gradle (gradle wrapper file included)
 Application is expect MySQL BDMS running in 3306 
 Dummy data can be found in doc/data.sql (converted from accountsdb.accdb)
 
