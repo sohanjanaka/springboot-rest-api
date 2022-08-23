@@ -19,9 +19,8 @@ public class AppExceptionHandler {
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public Map<String, String> methodArgumentNotValidException(MethodArgumentNotValidException ex) {
 		Map<String, String> errorMap = new HashMap<>();
-		ex.getBindingResult().getFieldErrors().forEach(error -> {
-			errorMap.put(error.getField(), error.getDefaultMessage());
-		});
+		ex.getBindingResult().getFieldErrors()
+				.forEach(error -> errorMap.put(error.getField(), error.getDefaultMessage()));
 		return errorMap;
 	}
 
@@ -36,7 +35,7 @@ public class AppExceptionHandler {
 			errorMap.put(ex.getPath().get(0).getFieldName(), ex.getValue() + " is invalid please check the value");
 		}
 
-		if (ex.getTargetType().getName() == "java.time.LocalDate") {
+		if (ex.getTargetType().getName().equals("java.time.LocalDate")) {
 			errorMap.put(ex.getPath().get(0).getFieldName() + "of request body", "Format should be YYYY-MM-DD");
 		}
 
