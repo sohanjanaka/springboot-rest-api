@@ -20,16 +20,16 @@ public class Statement {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
-	int id;
-	
+	private int id;
+
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "account_id")
-	Account account;
+	private Account account;
 
 	@Column(name = "datefield")
-	String dateField;
+	private String dateField;
 
 	@Column(name = "amount")
-	String amount;
+	private String amount;
 
 }

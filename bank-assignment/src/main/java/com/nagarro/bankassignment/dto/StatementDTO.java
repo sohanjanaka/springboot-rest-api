@@ -11,9 +11,9 @@ import lombok.Setter;
 @Setter
 public class StatementDTO {
 
-	LocalDate dateField;
-	double amount;
-	AccountDTO account;
+	private LocalDate dateField;
+	private double amount;
+	private AccountDTO account;
 
 	public StatementDTO(String dateField, String amount, AccountDTO account) {
 		try {

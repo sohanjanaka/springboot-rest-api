@@ -3,7 +3,7 @@ package com.nagarro.bankassignment.validation;
 import java.time.LocalDate;
 
 import com.nagarro.bankassignment.dto.StatementDTO;
-import com.nagarro.bankassignment.dto.StatementRequestDTO;
+import com.nagarro.bankassignment.model.StatementRequest;
 
 public class StatementValidation {
 
@@ -11,7 +11,7 @@ public class StatementValidation {
 
 	}
 
-	public static Boolean filterByAmountDate(StatementDTO statementDTO, StatementRequestDTO statementRequestDTO) {
+	public static Boolean filterByAmountDate(StatementDTO statementDTO, StatementRequest statementRequestDTO) {
 
 		Double amount = statementDTO.getAmount();
 		LocalDate date = statementDTO.getDateField();

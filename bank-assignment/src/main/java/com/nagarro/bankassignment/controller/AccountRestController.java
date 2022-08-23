@@ -16,7 +16,7 @@ import com.nagarro.bankassignment.service.AccountService;
 public class AccountRestController {
 
 	@Autowired
-	AccountService accountService;
+	private AccountService accountService;
 
 	@GetMapping("account/")
 	public List<AccountDTO> getAllAccount() {

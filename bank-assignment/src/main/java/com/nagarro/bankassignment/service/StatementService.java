@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nagarro.bankassignment.dto.StatementDTO;
-import com.nagarro.bankassignment.dto.StatementRequestDTO;
 import com.nagarro.bankassignment.entity.Statement;
+import com.nagarro.bankassignment.model.StatementRequest;
 import com.nagarro.bankassignment.repository.StatementRepository;
 import com.nagarro.bankassignment.utils.StatementConvert;
 import com.nagarro.bankassignment.validation.StatementValidation;
@@ -18,7 +18,7 @@ import com.nagarro.bankassignment.validation.StatementValidation;
 public class StatementService {
 
 	@Autowired
-	StatementRepository statementRepository;
+	private StatementRepository statementRepository;
 
 	public List<StatementDTO> getStatementByAccountAccountNumber(String accountNumber) {
 		Iterable<Statement> statement = statementRepository.findByAccountAccountNumber(accountNumber);
@@ -37,7 +37,7 @@ public class StatementService {
 		return filterStatementDTOs;
 	}
 
-	public List<StatementDTO> getStatementByDateAmount(String accountNumber, StatementRequestDTO statementRequestDTO) {
+	public List<StatementDTO> getStatementByDateAmount(String accountNumber, StatementRequest statementRequestDTO) {
 		List<StatementDTO> filterStatementDTOs = new ArrayList<>();
 		List<StatementDTO> statementDTOs = getStatementByAccountAccountNumber(accountNumber);
 		statementDTOs.forEach(statementDTO -> {

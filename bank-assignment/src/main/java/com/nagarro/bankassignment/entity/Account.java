@@ -18,12 +18,12 @@ public class Account {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
-	int id;
+	private int id;
 
 	@Column(name = "account_type")
-	String accountType;
+	private String accountType;
 
 	@Column(name = "account_number", unique = true)
-	String accountNumber;
+	private String accountNumber;
 
 }

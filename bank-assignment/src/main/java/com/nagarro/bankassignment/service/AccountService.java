@@ -14,7 +14,7 @@ import com.nagarro.bankassignment.utils.AccountConvert;
 public class AccountService {
 
 	@Autowired
-	AccountRepository accountRepository;
+	private AccountRepository accountRepository;
 
 	public List<AccountDTO> getAccount() {
 		Iterable<Account> accounts = accountRepository.findAll();
