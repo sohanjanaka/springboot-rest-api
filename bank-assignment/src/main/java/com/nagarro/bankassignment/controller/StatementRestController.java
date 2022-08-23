@@ -26,6 +26,7 @@ public class StatementRestController {
 	@Autowired
 	private StatementService statementService;
 
+
 	@Autowired
 	private AccountValidation accountValidation;
 
