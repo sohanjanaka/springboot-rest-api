@@ -19,7 +19,7 @@ import com.nagarro.bankassignment.dto.StatementDTO;
 import com.nagarro.bankassignment.exception.InvalidInputParameterException;
 import com.nagarro.bankassignment.model.StatementRequest;
 import com.nagarro.bankassignment.service.StatementService;
-import com.nagarro.bankassignment.validation.AccountValidation;
+import com.nagarro.bankassignment.validation.RequestValidation;
 
 @RestController
 @RequestMapping("api/v1")
@@ -29,7 +29,7 @@ public class StatementRestController {
 	private StatementService statementService;
 
 	@Autowired
-	private AccountValidation accountValidation;
+	private RequestValidation accountValidation;
 
 	public Logger getLogger() {
 		return LoggerFactory.getLogger(StatementRestController.class);
@@ -49,6 +49,7 @@ public class StatementRestController {
 			@RequestBody @Valid StatementRequest statementRequest) throws InvalidInputParameterException {
 		getLogger().info("Request received to api/v1/advenceStatement/{accountNumber}");
 		accountValidation.isValidAccount(accountNumber);
+		accountValidation.requestValidation(statementRequest);
 		List<StatementDTO> response = statementService.getStatementByDateAmount(accountNumber, statementRequest);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}

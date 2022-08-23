@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nagarro.bankassignment.dto.AccountDTO;
 import com.nagarro.bankassignment.exception.InvalidInputParameterException;
 import com.nagarro.bankassignment.service.AccountService;
-import com.nagarro.bankassignment.validation.AccountValidation;
+import com.nagarro.bankassignment.validation.RequestValidation;
 
 @RestController
 @RequestMapping("api/v1")
@@ -25,7 +25,7 @@ public class AccountRestController {
 	private AccountService accountService;
 
 	@Autowired
-	private AccountValidation accountValidation;
+	private RequestValidation accountValidation;
 
 	public Logger getLogger() {
 		return LoggerFactory.getLogger(AccountRestController.class);

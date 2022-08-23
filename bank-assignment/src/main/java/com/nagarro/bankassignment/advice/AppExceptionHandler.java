@@ -41,7 +41,7 @@ public class AppExceptionHandler {
 	@ExceptionHandler(InvalidInputParameterException.class)
 	public Map<String, String> invalidInputParameterException(InvalidInputParameterException ex) {
 		Map<String, String> errorMap = new HashMap<>();
-		errorMap.put("Account number", "Invalid Account number please check the account number");
+		errorMap.put("Invalid Request", "Invalid Request parameter please Invalid Request parameter");
 		return errorMap;
 	}
 
