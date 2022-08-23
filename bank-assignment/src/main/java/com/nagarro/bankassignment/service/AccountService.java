@@ -18,12 +18,12 @@ public class AccountService {
 
 	public List<AccountDTO> getAccount() {
 		Iterable<Account> accounts = accountRepository.findAll();
-		return AccountConvert.EntitytoDTO(accounts);
+		return AccountConvert.entitytoDTO(accounts);
 	}
 
 	public AccountDTO getAccountByAccountNumber(String accountNumber) {
 		Account accounts = accountRepository.findByAccountNumber(accountNumber);
-		return AccountConvert.EntitytoDTO(accounts);
+		return AccountConvert.entitytoDTO(accounts);
 	}
 
 }

@@ -8,15 +8,17 @@ import com.nagarro.bankassignment.entity.Account;
 
 public class AccountConvert {
 
-	public static List<AccountDTO> EntitytoDTO(Iterable<Account> accounts) {
+	private AccountConvert() {
+
+	}
+
+	public static List<AccountDTO> entitytoDTO(Iterable<Account> accounts) {
 		List<AccountDTO> acountDTOs = new ArrayList<>();
-		accounts.forEach((account) -> {
-			acountDTOs.add(EntitytoDTO(account));
-		});
+		accounts.forEach(account -> acountDTOs.add(entitytoDTO(account)));
 		return acountDTOs;
 	}
 
-	public static AccountDTO EntitytoDTO(Account account) {
+	public static AccountDTO entitytoDTO(Account account) {
 		return new AccountDTO(account.getAccountType(), account.getAccountNumber());
 	}
 

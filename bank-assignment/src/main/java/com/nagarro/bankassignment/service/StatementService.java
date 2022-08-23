@@ -22,7 +22,7 @@ public class StatementService {
 
 	public List<StatementDTO> getStatementByAccountAccountNumber(String accountNumber) {
 		Iterable<Statement> statement = statementRepository.findByAccountAccountNumber(accountNumber);
-		return StatementConvert.EntitytoDTO(statement);
+		return StatementConvert.entitytoDTO(statement);
 	}
 
 	public List<StatementDTO> getStatement3months(String accountNumber) {
