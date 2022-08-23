@@ -9,19 +9,22 @@ import com.nagarro.bankassignment.entity.Statement;
 
 public class StatementConvert {
 
-	public static List<StatementDTO> EntitytoDTO(Iterable<Statement> statements) {
+	private StatementConvert() {
+
+	}
+
+	public static List<StatementDTO> entitytoDTO(Iterable<Statement> statements) {
 		List<StatementDTO> statementDTOs = new ArrayList<>();
-		statements.forEach((statement) -> {
-			statementDTOs.add(EntitytoDTO(statement));
-		});
+		statements.forEach(statement -> statementDTOs.add(entitytoDTO(statement)));
 		return statementDTOs;
 	}
 
-	public static StatementDTO EntitytoDTO(Statement statement) {
-		return new StatementDTO(statement.getDateField(), statement.getAmount(), AccountConvert.EntitytoDTO(statement.getAccount()));
+	public static StatementDTO entitytoDTO(Statement statement) {
+		return new StatementDTO(statement.getDateField(), statement.getAmount(),
+				AccountConvert.entitytoDTO(statement.getAccount()));
 	}
 
-	public static LocalDate textdateFieldToLocalDate(String datefield) throws NumberFormatException{
+	public static LocalDate textdateFieldToLocalDate(String datefield) throws NumberFormatException {
 
 		String[] date = datefield.split("\\.");
 

@@ -7,6 +7,10 @@ import com.nagarro.bankassignment.dto.StatementRequestDTO;
 
 public class StatementValidation {
 
+	private StatementValidation() {
+
+	}
+
 	public static Boolean filterByAmountDate(StatementDTO statementDTO, StatementRequestDTO statementRequestDTO) {
 
 		Double amount = statementDTO.getAmount();
@@ -16,28 +20,16 @@ public class StatementValidation {
 		Double min = statementRequestDTO.getMinimumAmount();
 		Double max = statementRequestDTO.getMaximumAmount();
 
-		if (filterByAmount(amount, min, max) && filterByDate(date, startDate, endDate)) {
-			return true;
-		} else {
-			return false;
-		}
+		return (filterByAmount(amount, min, max) && filterByDate(date, startDate, endDate));
 
 	}
 
 	public static Boolean filterByAmount(Double amount, Double min, Double max) {
-		if (amount >= min && amount <= max) {
-			return true;
-		} else {
-			return false;
-		}
+		return (amount >= min && amount <= max);
 	}
 
 	public static Boolean filterByDate(LocalDate date, LocalDate startDate, LocalDate endDate) {
-		if (date.compareTo(startDate) > 0 && date.compareTo(endDate) < 0) {
-			return true;
-		} else {
-			return false;
-		}
+		return (date.compareTo(startDate) > 0 && date.compareTo(endDate) < 0);
 	}
 
 }

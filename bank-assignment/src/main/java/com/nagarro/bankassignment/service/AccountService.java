@@ -12,20 +12,18 @@ import com.nagarro.bankassignment.utils.AccountConvert;
 
 @Service
 public class AccountService {
-	
+
 	@Autowired
 	AccountRepository accountRepository;
-	
-	public List<AccountDTO> getAccount(){
+
+	public List<AccountDTO> getAccount() {
 		Iterable<Account> accounts = accountRepository.findAll();
-		List<AccountDTO> accountDTO = AccountConvert.EntitytoDTO(accounts);
-		return  accountDTO;
+		return AccountConvert.entitytoDTO(accounts);
 	}
-	
-	public AccountDTO getAccountByAccountNumber(String accountNumber){
+
+	public AccountDTO getAccountByAccountNumber(String accountNumber) {
 		Account accounts = accountRepository.findByAccountNumber(accountNumber);
-		AccountDTO accountDTO = AccountConvert.EntitytoDTO(accounts);
-		return  accountDTO;
+		return AccountConvert.entitytoDTO(accounts);
 	}
 
 }

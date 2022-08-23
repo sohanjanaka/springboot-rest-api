@@ -1,7 +1,18 @@
 plugins {
 	id 'org.springframework.boot' version '2.7.3'
 	id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+	id "org.sonarqube" version "3.4.0.2513"
 	id 'java'
+}
+
+sonarqube {
+    properties {
+        property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.projectName", "bank-statement-assignment"
+        property "sonar.url", "http://localhost:9000/"
+        property "sonar.login", "squ_8ab68236a7cc6df2240b5626222297af64c2d70f"
+        
+    }
 }
 
 group = 'com.nagarro'

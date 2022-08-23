@@ -24,7 +24,7 @@ import com.nagarro.bankassignment.validation.AccountValidation;
 public class StatementRestController {
 
 	@Autowired
-	StatementService StatementService;
+	StatementService statementService;
 
 	@Autowired
 	AccountValidation accountValidation;
@@ -33,7 +33,7 @@ public class StatementRestController {
 	public ResponseEntity<List<StatementDTO>> getStatement(@PathVariable String accountNumber)
 			throws InvalidInputParameterException {
 		accountValidation.isValidAccount(accountNumber);
-		List<StatementDTO> responce = StatementService.getStatement3months(accountNumber);
+		List<StatementDTO> responce = statementService.getStatement3months(accountNumber);
 		return new ResponseEntity<>(responce, HttpStatus.OK);
 	}
 
@@ -41,7 +41,7 @@ public class StatementRestController {
 	public ResponseEntity<List<StatementDTO>> getStatement(@PathVariable String accountNumber,
 			@RequestBody @Valid StatementRequestDTO statementRequest) throws InvalidInputParameterException {
 		accountValidation.isValidAccount(accountNumber);
-		List<StatementDTO> responce = StatementService.getStatementByDateAmount(accountNumber, statementRequest);
+		List<StatementDTO> responce = statementService.getStatementByDateAmount(accountNumber, statementRequest);
 		return new ResponseEntity<>(responce, HttpStatus.OK);
 	}
 

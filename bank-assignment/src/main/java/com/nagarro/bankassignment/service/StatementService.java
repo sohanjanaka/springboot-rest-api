@@ -18,12 +18,11 @@ import com.nagarro.bankassignment.validation.StatementValidation;
 public class StatementService {
 
 	@Autowired
-	StatementRepository StatementRepository;
+	StatementRepository statementRepository;
 
 	public List<StatementDTO> getStatementByAccountAccountNumber(String accountNumber) {
-		Iterable<Statement> statement = StatementRepository.findByAccountAccountNumber(accountNumber);
-		List<StatementDTO> statementDTOs = StatementConvert.EntitytoDTO(statement);
-		return statementDTOs;
+		Iterable<Statement> statement = statementRepository.findByAccountAccountNumber(accountNumber);
+		return StatementConvert.entitytoDTO(statement);
 	}
 
 	public List<StatementDTO> getStatement3months(String accountNumber) {
@@ -41,7 +40,7 @@ public class StatementService {
 	public List<StatementDTO> getStatementByDateAmount(String accountNumber, StatementRequestDTO statementRequestDTO) {
 		List<StatementDTO> filterStatementDTOs = new ArrayList<>();
 		List<StatementDTO> statementDTOs = getStatementByAccountAccountNumber(accountNumber);
-		statementDTOs.forEach((statementDTO) -> {
+		statementDTOs.forEach(statementDTO -> {
 			if (StatementValidation.filterByAmountDate(statementDTO, statementRequestDTO)) {
 				filterStatementDTOs.add(statementDTO);
 			}
