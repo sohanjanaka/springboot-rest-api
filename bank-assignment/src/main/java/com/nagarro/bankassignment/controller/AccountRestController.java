@@ -9,14 +9,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nagarro.bankassignment.dto.AccountDTO;
+import com.nagarro.bankassignment.exception.InvalidInputParameterException;
 import com.nagarro.bankassignment.service.AccountService;
+import com.nagarro.bankassignment.validation.AccountValidation;
 
 @RestController
 @RequestMapping("api/v1/")
 public class AccountRestController {
 
 	@Autowired
-	AccountService accountService;
+	private AccountService accountService;
+
+	@Autowired
+	private AccountValidation accountValidation;
 
 	@GetMapping("account/")
 	public List<AccountDTO> getAllAccount() {
@@ -24,7 +29,8 @@ public class AccountRestController {
 	}
 
 	@GetMapping("account/{accountNumber}")
-	public AccountDTO getAccount(@PathVariable String accountNumber) {
+	public AccountDTO getAccount(@PathVariable String accountNumber) throws InvalidInputParameterException {
+		accountValidation.isValidAccount(accountNumber);
 		return accountService.getAccountByAccountNumber(accountNumber);
 	}
 

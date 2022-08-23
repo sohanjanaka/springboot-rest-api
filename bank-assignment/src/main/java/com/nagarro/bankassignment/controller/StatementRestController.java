@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nagarro.bankassignment.dto.StatementDTO;
-import com.nagarro.bankassignment.dto.StatementRequestDTO;
 import com.nagarro.bankassignment.exception.InvalidInputParameterException;
+import com.nagarro.bankassignment.model.StatementRequest;
 import com.nagarro.bankassignment.service.StatementService;
 import com.nagarro.bankassignment.validation.AccountValidation;
 
@@ -24,10 +24,11 @@ import com.nagarro.bankassignment.validation.AccountValidation;
 public class StatementRestController {
 
 	@Autowired
-	StatementService statementService;
+	private StatementService statementService;
+
 
 	@Autowired
-	AccountValidation accountValidation;
+	private AccountValidation accountValidation;
 
 	@GetMapping("statement/{accountNumber}")
 	public ResponseEntity<List<StatementDTO>> getStatement(@PathVariable String accountNumber)
@@ -39,7 +40,7 @@ public class StatementRestController {
 
 	@GetMapping("advenceStatement/{accountNumber}")
 	public ResponseEntity<List<StatementDTO>> getStatement(@PathVariable String accountNumber,
-			@RequestBody @Valid StatementRequestDTO statementRequest) throws InvalidInputParameterException {
+			@RequestBody @Valid StatementRequest statementRequest) throws InvalidInputParameterException {
 		accountValidation.isValidAccount(accountNumber);
 		List<StatementDTO> responce = statementService.getStatementByDateAmount(accountNumber, statementRequest);
 		return new ResponseEntity<>(responce, HttpStatus.OK);

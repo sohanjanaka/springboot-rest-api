@@ -11,7 +11,7 @@ import com.nagarro.bankassignment.repository.AccountRepository;
 public class AccountValidation {
 
 	@Autowired
-	AccountRepository accountRepository;
+	private AccountRepository accountRepository;
 
 	public Account isValidAccount(String accountNumber) throws InvalidInputParameterException {
 		Account account = accountRepository.findByAccountNumber(accountNumber);

@@ -1,4 +1,4 @@
-package com.nagarro.bankassignment.dto;
+package com.nagarro.bankassignment.model;
 
 import java.time.LocalDate;
 
@@ -9,13 +9,13 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class StatementRequestDTO {
+public class StatementRequest {
 
-	LocalDate startDate;
-	LocalDate endDate;
+	private LocalDate startDate;
+	private LocalDate endDate;
 	@Min(value = 0, message = "Please enter valid value for minimumAmount")
-	Double minimumAmount;
+	private Double minimumAmount;
 	@Min(value = 0, message = "Please enter valid value for maximumAmount")
-	Double maximumAmount;
+	private Double maximumAmount;
 
 }
