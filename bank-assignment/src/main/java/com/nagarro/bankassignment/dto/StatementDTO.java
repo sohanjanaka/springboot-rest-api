@@ -13,16 +13,12 @@ public class StatementDTO {
 
 	private LocalDate dateField;
 	private double amount;
-	private AccountDTO account;
+	private String accountNumber;
 
 	public StatementDTO(String dateField, String amount, AccountDTO account) {
-		try {
-			this.dateField = StatementConvert.textdateFieldToLocalDate(dateField);
-			this.amount = Double.parseDouble(amount);
-			this.account = account;
-		} catch (Exception e) {
-			System.err.println("conversion error");
-		}
+		this.dateField = StatementConvert.textdateFieldToLocalDate(dateField);
+		this.amount = Double.parseDouble(amount);
+		this.accountNumber = account.getAccountNumber();
 	}
 
 }

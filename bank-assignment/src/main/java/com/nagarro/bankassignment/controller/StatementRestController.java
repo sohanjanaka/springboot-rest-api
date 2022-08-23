@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,30 +22,35 @@ import com.nagarro.bankassignment.service.StatementService;
 import com.nagarro.bankassignment.validation.AccountValidation;
 
 @RestController
-@RequestMapping("api/v1/")
+@RequestMapping("api/v1")
 public class StatementRestController {
 
 	@Autowired
 	private StatementService statementService;
 
-
 	@Autowired
 	private AccountValidation accountValidation;
 
-	@GetMapping("statement/{accountNumber}")
-	public ResponseEntity<List<StatementDTO>> getStatement(@PathVariable String accountNumber)
-			throws InvalidInputParameterException {
-		accountValidation.isValidAccount(accountNumber);
-		List<StatementDTO> responce = statementService.getStatement3months(accountNumber);
-		return new ResponseEntity<>(responce, HttpStatus.OK);
+	public Logger getLogger() {
+		return LoggerFactory.getLogger(StatementRestController.class);
 	}
 
-	@GetMapping("advenceStatement/{accountNumber}")
+	@GetMapping("/statement/{accountNumber}")
+	public ResponseEntity<List<StatementDTO>> getStatement(@PathVariable String accountNumber)
+			throws InvalidInputParameterException {
+		getLogger().info("Request received to api/v1/statement/{accountNumber}");
+		accountValidation.isValidAccount(accountNumber);
+		List<StatementDTO> response = statementService.getStatement3months(accountNumber);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+
+	@GetMapping("/advenceStatement/{accountNumber}")
 	public ResponseEntity<List<StatementDTO>> getStatement(@PathVariable String accountNumber,
 			@RequestBody @Valid StatementRequest statementRequest) throws InvalidInputParameterException {
+		getLogger().info("Request received to api/v1/advenceStatement/{accountNumber}");
 		accountValidation.isValidAccount(accountNumber);
-		List<StatementDTO> responce = statementService.getStatementByDateAmount(accountNumber, statementRequest);
-		return new ResponseEntity<>(responce, HttpStatus.OK);
+		List<StatementDTO> response = statementService.getStatementByDateAmount(accountNumber, statementRequest);
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
 }

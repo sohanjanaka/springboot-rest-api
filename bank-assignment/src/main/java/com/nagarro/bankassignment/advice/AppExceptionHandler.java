@@ -34,7 +34,6 @@ public class AppExceptionHandler {
 		} else {
 			errorMap.put(ex.getPath().get(0).getFieldName(), ex.getValue() + " is invalid please check the value");
 		}
-
 		return errorMap;
 	}
 
